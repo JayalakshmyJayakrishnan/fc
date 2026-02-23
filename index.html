@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Plant Stress Detection Architecture</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #f4f6f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    /* 16:9 Slide Container */
+    .slide {
+        width: 1920px;
+        height: 1080px;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        padding: 60px;
+        box-sizing: border-box;
+    }
+
+    .flow-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .box {
+        background: white;
+        width: 250px;
+        padding: 25px;
+        border-radius: 18px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        cursor: pointer;
+    }
+
+    .box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .title {
+        font-weight: 700;
+        font-size: 22px;
+        margin-bottom: 12px;
+        color: #2c3e50;
+    }
+
+    .content {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #555;
+    }
+
+    .arrow {
+        font-size: 40px;
+        color: #3498db;
+        margin: 0 10px;
+    }
+
+    .highlight {
+        border: 3px solid #3498db;
+        background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    }
+</style>
+</head>
+
+<body>
+
+<div class="slide">
+
+    <div class="flow-container">
+
+        <div class="box highlight">
+            <div class="title">Input</div>
+            <div class="content">
+                Ultrasonic Audio (0.5–2s)<br>
+                Piezo Sensor<br>
+                ↓<br>
+                Numeric Features
+            </div>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="box">
+            <div class="title">Feature Extraction</div>
+            <div class="content">
+                Cavitation Pops<br>
+                Insect Scratching<br>
+                Heat Microcracks<br>
+                Normal Vibrations
+            </div>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="box highlight">
+            <div class="title">Model</div>
+            <div class="content">
+                1D CNN + LSTM<br>
+                TinyML (&lt;120KB)<br>
+                Fast & Low Power
+            </div>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="box">
+            <div class="title">Training</div>
+            <div class="content">
+                4 Classes:<br>
+                Normal<br>
+                Water Stress<br>
+                Insect Stress<br>
+                Heat Stress
+            </div>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="box highlight">
+            <div class="title">Output</div>
+            <div class="content">
+                4 Probabilities<br>
+                Highest = Prediction
+            </div>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="box">
+            <div class="title">Stress Score</div>
+            <div class="content">
+                Score: 0–100<br>
+                Green → Yellow → Orange → Red
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach(box => {
+        box.addEventListener('click', () => {
+            box.style.background = "#e8f5e9";
+            setTimeout(() => {
+                box.style.background = "";
+            }, 400);
+        });
+    });
+</script>
+
+</body>
+</html>
